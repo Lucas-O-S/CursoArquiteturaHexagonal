@@ -1,13 +1,14 @@
-package apicliente.demo;
+package consumer.apiconsumers;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@EnableFeignClients
 @SpringBootApplication
-public class DemoApplication {
+public class ApiconsumersApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(ApiconsumersApplication.class, args);
 	}
 
 }
