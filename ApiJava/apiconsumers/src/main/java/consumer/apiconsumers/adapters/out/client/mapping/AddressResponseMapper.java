@@ -1,4 +1,4 @@
-package consumer.apiconsumers.adapters.out.client.mapper;
+package consumer.apiconsumers.adapters.out.client.mapping;
 
 import org.mapstruct.Mapper;
 
