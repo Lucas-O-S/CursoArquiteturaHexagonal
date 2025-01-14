@@ -9,4 +9,5 @@ import consumer.apiconsumers.application.core.domain.Customer;
 public interface CustomerEntityMapper {
     CustomerEntity toCustomerEntity(Customer customer);
 
+    Customer toCustomer(CustomerEntity customerEntity);
 }
