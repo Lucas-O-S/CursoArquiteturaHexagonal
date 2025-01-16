@@ -2,6 +2,7 @@ package consumer.apiconsumers.adapters.in.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import consumer.apiconsumers.adapters.in.controller.Request.CustomerRequest;
 import consumer.apiconsumers.adapters.in.controller.Response.CustomerResponse;
 import consumer.apiconsumers.adapters.in.controller.mapper.CustomerMapper;
 import consumer.apiconsumers.application.core.domain.Customer;
+import consumer.apiconsumers.application.core.useCase.DeleteCustomerByIdUseCase;
 import consumer.apiconsumers.application.ports.in.FindCustomerByIdInputPort;
 import consumer.apiconsumers.application.ports.in.InsertCustomerInputPort;
 import consumer.apiconsumers.application.ports.in.UpdateCustomerInputPort;
@@ -37,6 +39,10 @@ public class CustomerController {
 
     @Autowired
     private UpdateCustomerInputPort updateCustomerInputPort;
+
+    @Autowired
+    private DeleteCustomerByIdUseCase deleteCustomerByIdUseCase;
+
 
     @PostMapping
     public  ResponseEntity<Void> insert(@Valid @RequestBody CustomerRequest request) {
@@ -62,6 +68,16 @@ public class CustomerController {
         customer.setId(id);
         updateCustomerInputPort.Update(customer, id);
         return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> Delete(
+        @PathVariable final String id
+    ){
+        deleteCustomerByIdUseCase.Delete(id);
+
+        return ResponseEntity.noContent().build();
+
     }
     
     
